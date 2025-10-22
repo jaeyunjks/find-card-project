@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Search Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem auto;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #2b70e4;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d52aa;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #2b70e4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Search Card by Last 4 Digits</h1>
+
+    <form th:action="@{/search-card}" method="post">
+        <input type="text" name="last4" maxlength="4" minlength="4" pattern="\d{4}" placeholder="1234" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${results}">
+        <h2>Results for "<span th:text="${last4}"></span>"</h2>
+
+        <div th:if="${#lists.isEmpty(results)}">
+            <p style="color: gray;">No cards found with those digits.</p>
+        </div>
+
+        <table th:if="${!#lists.isEmpty(results)}">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Masked PAN</th>
+                    <th>Created Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="res : ${results}">
+                    <td th:text="${res.name}"></td>
+                    <td th:text="${res.maskedPan}"></td>
+                    <td th:text="${res.createdAt}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <a href="/add-card">Add Another Card</a>
+
+</body>
+
+</html>
