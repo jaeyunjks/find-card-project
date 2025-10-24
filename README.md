@@ -122,7 +122,7 @@ http://localhost:8080/add-card
 2. Enter the **cardholder name** and **16-digit PAN**  
 3. Click “Add Card”  
    - On success, a confirmation message appears.  
-   - Plaintext PANs are never stored — only encrypted values go into the database.
+   - Plaintext PANs are never stored, only encrypted values go into the database.
 
 ### Searching for a Card
 1. Go to `/search-card`  
@@ -161,9 +161,9 @@ Moreover, it also supports advanced data types like JSON, arrays, enums, and net
 ---
 
 ## Encryption Details
-This project uses the **AES (Advanced Encryption Standard)** algorithm implemented in `AESEncryptionUtil.java`.  
-Only encrypted PANs are stored — plaintext cards are never saved or printed anywhere in logs.  
-Decryption is only used temporarily for comparison during searches.
+- This project uses the **AES (Advanced Encryption Standard)** algorithm implemented in `AESEncryptionUtil.java`.  
+- Only encrypted PANs are stored, plaintext cards are never saved or printed anywhere in logs.  
+- Decryption is only used temporarily for comparison during searches.
 
 ---
 
