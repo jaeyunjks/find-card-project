@@ -29,6 +29,19 @@ The frontend is built with **Thymeleaf** templates using simple HTML, making it 
 
 ---
 
+## Security Considerations
+- Encryption Key Management:
+The AES key is provided via environment variables, never hardcoded.
+In production, it is recommended to use a secret manager/OS-level env for extra safety.
+
+- No Plaintext Storage or Logging:
+All PANs are encrypted on disk/database and are never shown in logs.
+
+- Best Practice:
+Masking is performed right after decryption, before data leaves the backend. The key can be rotated easily by updating the env variable.
+
+---
+
 ## Tech Stack
 - Java 17  
 - Spring Boot 3.x  
@@ -143,7 +156,7 @@ If no matches are found, you’ll see:
 
 I chose PostgreSQL because it provides stronger consistency, scalability, and flexibility than simpler relational or non-relational databases. PostgreSQL is fully ACID-compliant by default, which is important to guarantee secure and predictable transactions for storing and encrypting sensitive data like PAN numbers. Unlike MySQL, which is optimised for read-heavy apps. PostgreSQL handles read‑write concurrency efficiently through MVCC, making it better for applications that both query and update records frequently.​
 
-Moreover, it also supports advanced data types like JSON, arrays, enums, and network types. This feature allows structured and semi‑structured data to coexist in one system. In conparison to SQLite, PostgreSQL offers multi‑user access, stronger indexing, and better transaction isolation.
+Moreover, it also supports advanced data types like JSON, arrays, enums, and network types. This feature allows structured and semi‑structured data to coexist in one system. In comparison to SQLite, PostgreSQL offers multi‑user access, stronger indexing, and better transaction isolation.
 
 ---
 
