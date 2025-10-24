@@ -177,9 +177,7 @@ Decryption is only used temporarily for comparison during searches.
 
 ---
 
-## Summary
-This project demonstrates a complete backend workflow using **Spring Boot**, **PostgreSQL**, and **AES encryption**. It combines security, performance, and simplicity by keeping the code clean and the UI minimal.  
-It meets the requirements of Neurocom’s coding project while showcasing solid understanding of backend design, data protection, and web application structure.
+## Happy set up ~~
 
 
 
